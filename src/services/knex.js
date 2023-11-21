@@ -1,10 +1,14 @@
-let conn = '';
+const knex = require('knex');
+const knexConfig = require('../config/database.js')
+
+let conn;
 
 const knexService = () => {
   if (!conn) {
-    conn = ''
+    conn = knex(knexConfig);
+    return conn;
   }
   return conn;
 };
 
-export default knexService;
+module.exports = knexService;

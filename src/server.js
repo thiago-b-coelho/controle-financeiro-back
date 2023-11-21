@@ -1,5 +1,5 @@
-import express from "express";
-import userRoute from './modules/user/user.route.js'
+const express = require("express");
+const userRoute = require('./modules/user/user.route.js');
 const app = express();
 app.use(express.json())
 
@@ -10,6 +10,6 @@ app.get('/health', (_, res) => {
 });
 
 const PORT = 8080
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Servidor rodando na porta ${PORT}`)
-})
+});

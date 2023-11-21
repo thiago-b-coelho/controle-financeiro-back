@@ -1,18 +1,25 @@
-import knex from '../../services/knex.js';
+const knex = require('../../config/database.js');
+const bcrypt = require('bcrypt');
 
-export const getAll = () => {
-  return knex('users');
+const getAll = () => {
+  return knex('users').select('id', 'name', 'email', 'created_at', 'updated_at');
 }
 
-export const save = (params) => {
+const get = (id) => {
+  return knex('users').where({ id }).first().select('id', 'name', 'email', 'created_at', 'updated_at');
+}
+
+const save = (params) => {
+  params.password = bcrypt.hashSync(params.password, 10)
   return knex('users').insert(params)
 }
 
-export const remove = (params) => {
-  return knex('users').delete(params)
+const remove = (id) => {
+  return knex('users').delete(id)
 }
 
-export const update = (params) => {
-  return knex('users').insert(params)
+const update = (id, params) => {
+  return knex('users').where({ id }).update(params)
 }
 
+module.exports = { getAll, get, save, remove, update }
