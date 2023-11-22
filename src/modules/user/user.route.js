@@ -1,5 +1,6 @@
 const express = require('express');
-const {get, getAll, save, remove} = require('./user.model.js');
+const { get, getAll, save, remove } = require('./user.model.js');
+const authMiddleware = require('../../middleware/authMiddleware.js')
 
 const router = express.Router();
 
@@ -7,6 +8,10 @@ router.get('/', async (_, res) => {
   const data = await getAll();
   res.status(200).json({ data })
 });
+
+router.get('/me', authMiddleware, async (req, res) => {
+  res.status(200).json({ data: req.user })
+})
 
 router.get('/:id', async (req, res) => {
   const data = await get(req.params.id);

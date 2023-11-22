@@ -23,7 +23,7 @@ const register = async (params) => {
   }
   const newUser = await save(params);
   const token = jwt.sign({ id: newUser[0] }, process.env.JWT_SECRET);
-  const message = 'User registered successfully.'
+  const message = `User ${params.name} registered successfully.`
   return { token, message };
 }
 
