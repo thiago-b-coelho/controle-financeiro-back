@@ -11,9 +11,9 @@ const login = async (params) => {
   if (!password) {
     return { error: 'Invalid e-mail or password.' }
   }
-
   const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
-  return { token };
+  const message = 'Login successful.'
+  return { token, message };
 }
 
 const register = async (params) => {
@@ -23,7 +23,8 @@ const register = async (params) => {
   }
   const newUser = await save(params);
   const token = jwt.sign({ id: newUser[0] }, process.env.JWT_SECRET);
-  return { token };
+  const message = 'User registered successfully.'
+  return { token, message };
 }
 
 module.exports = { login, register }
