@@ -1,4 +1,4 @@
-const knex = require('../../config/database.js');
+const knex = require('../../services/knex');
 const bcrypt = require('bcrypt');
 
 const getAll = () => {
@@ -9,9 +9,15 @@ const get = (id) => {
   return knex('users').where({ id }).first().select('id', 'name', 'email', 'created_at', 'updated_at');
 }
 
-const getByEmail = (email) =>{
-  return knex('users').where({email}).first();
-}
+const getByEmail = async (email) => {
+  try {
+    const result = await knex('users').where({ email }).first();
+    return result;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
 
 const save = (params) => {
   params.password = bcrypt.hashSync(params.password, 10)

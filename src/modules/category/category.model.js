@@ -1,4 +1,4 @@
-const knex = require('../../config/database.js');
+const knex = require('../../services/knex');
 
 const TABLE = 'categories'
 
@@ -15,11 +15,11 @@ const save = (params) => {
 }
 
 const remove = (id, userID) => {
-  return knex(TABLE).delete(id).where({ id }).andWhere({ 'user_id': userID });
+  return knex(TABLE).delete().where({ id }).andWhere({ 'user_id': userID });
 }
 
 const update = (id, userID, params) => {
   return knex(TABLE).where({ id }).andWhere({ 'user_id': userID }).update(params);
 }
 
-module.exports = { getAll, get, getByEmail, save, remove, update }
+module.exports = { getAll, get, save, remove, update }

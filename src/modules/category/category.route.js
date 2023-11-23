@@ -1,5 +1,5 @@
 const express = require('express');
-const { get, getAll, save, remove } = require('./category.model.js');
+const { get, getAll, save, remove, update } = require('./category.model.js');
 const authMiddleware = require('../../middleware/authMiddleware.js')
 
 const router = express.Router();
@@ -22,12 +22,12 @@ router.post('/', authMiddleware, async (req, res) => {
 
 router.put('/:id', authMiddleware, async (req, res) => {
   req.body.user_id = req.user.id;
-  const data = await update(req.params.id, req.body, req.user.id);
+  const data = await update(req.params.id, req.user.id, req.body);
   return res.status(200).json({ data })
 })
 
 router.delete('/:id', authMiddleware, async (req, res) => {
-  const data = await remove(req.params.id);
+  const data = await remove(req.params.id, req.user.id);
   return res.status(200).json({ data })
 })
 
