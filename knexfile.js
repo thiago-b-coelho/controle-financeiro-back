@@ -1,5 +1,3 @@
-const config = require("./src/config/database.js");
+const development = require("./src/config/database");
 
-module.exports = {
-  config
-};
+module.exports = development;

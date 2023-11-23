@@ -2,7 +2,7 @@
 exports.up = function (knex) {
   return knex.schema.createTable('users', function (table) {
     table.increments('id').primary();
-    table.string('nome')
+    table.string('name');
     table.string('username');
     table.string('email');
     table.timestamps(true, true);
