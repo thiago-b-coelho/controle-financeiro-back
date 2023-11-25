@@ -1,7 +1,7 @@
 // migrations/20231121123456_create_categories_table.js
 exports.up = function (knex) {
   return knex.schema.createTable('categories', function (table) {
-    table.increments('id').primary();
+    table.bigIncrements('id');
     table.string('name');
     table.bigInteger('user_id').unsigned().references('id').inTable('users');
   });

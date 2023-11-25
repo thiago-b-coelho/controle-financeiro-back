@@ -4,6 +4,7 @@ const userRouter = require('./modules/user/user.route.js');
 const authRouter = require('./modules/auth/auth.route.js');
 const categoryRouter = require('./modules/category/category.route.js');
 const goalRouter = require('./modules/goal/goal.route.js');
+const transactionRouter = require('./modules/transaction/transaction.route.js');
 const bearerToken = require('express-bearer-token');
 const app = express();
 
@@ -15,6 +16,7 @@ app.use('/user', userRouter);
 app.use('/auth', authRouter);
 app.use('/category', categoryRouter);
 app.use('/goal', goalRouter);
+app.use('/transaction', transactionRouter);
 
 app.get('/health', (_, res) => {
   return res.send('sistema operacional!');
