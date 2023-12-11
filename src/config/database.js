@@ -5,7 +5,7 @@ const env = dotenv.config().parsed;
 module.exports = {
   production: {
     client: 'mysql2',
-    connection: process.env.DATABASE_URL
+    connection: process.env.JAWSDB_URL
   }
 };
 
