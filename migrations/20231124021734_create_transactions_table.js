@@ -8,6 +8,7 @@ exports.up = function (knex) {
     table.bigInteger('category_id').unsigned().references('id').inTable('categories');
     table.bigInteger('user_id').unsigned().references('id').inTable('users');
     table.timestamps(true, true);
+    
   });
 };
 
