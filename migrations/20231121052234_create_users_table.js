@@ -3,7 +3,7 @@ exports.up = function (knex) {
   return knex.schema.createTable('users', function (table) {
     table.bigIncrements('id');
     table.string('name');
-    table.string('username');
+    table.string('password');
     table.string('email');
     table.timestamps(true, true);
   });
